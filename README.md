@@ -1,2 +1,2 @@
 # devMeetup
-App for dev management
+App for dev management on Vuejs
