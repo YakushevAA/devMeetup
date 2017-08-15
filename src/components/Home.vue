@@ -14,7 +14,8 @@
           <v-carousel-item
             v-for="meetup in meetups"
             :src="meetup.imageUrl"
-            :key="meetup.id">
+            :key="meetup.id"
+            @click="onLoadMeetup(meetup.id)">
             <div class="carousel-title">
               {{ meetup.title }}
             </div>
@@ -32,26 +33,15 @@
 
 <script>
   export default {
-    data() {
-      return {
-        meetups: [
-          {
-            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png',
-            id: '1',
-            title: 'Vue js',
-          },
-          {
-            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1024px-Angular_full_color_logo.svg.png',
-            id: '2',
-            title: 'Angular',
-          },
-          {
-            imageUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png',
-            id: '3',
-            title: 'React js',
-          },
-        ],
-      };
+    computed: {
+      meetups() {
+        return this.$store.getters.featuredMeetups;
+      },
+    },
+    methods: {
+      onLoadMeetup(id) {
+        this.$router.push(`/meetups/${id}`);
+      },
     },
   };
 </script>
